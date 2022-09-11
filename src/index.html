@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <!-- <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> -->
+
+    <style>
+        body {
+            font-family: arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            color: #888;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        /*
+        $gunmetal: rgba(40, 44, 52, 1);
+        $gunmetal-2: rgba(44, 49, 58, 1);
+        $black-coral: rgba(92, 99, 113, 1);
+        $cadet-blue-crayola: rgba(171, 178, 192, 1);
+        $french-mauve: rgba(199, 117, 223, 1);
+        $blue-jeans: rgba(93, 174, 242, 1);
+        $tan-crayola: rgba(210, 155, 98, 1);
+        $pistachio: rgba(151, 196, 117, 1);
+        $maximum-blue-green: rgba(81, 182, 195, 1);
+        $candy-pink: rgba(226, 107, 115, 1);
+        */
+        
+        #wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 340px;
+            bottom: 0;
+            width: auto;
+            height: auto;
+            background: rgba(44, 49, 58, 1);
+            background: -moz-radial-gradient(center, ellipse cover, rgb(44, 49, 58) 0%, rgba(44, 49, 58, 1) 74%, rgba(44, 49, 58, 1) 100%);
+            background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(44, 49, 58, 1)), color-stop(74%, rgba(44, 49, 58, 1)), color-stop(100%, rgba(44, 49, 58, 1)));
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(44, 49, 58, 1) 0%, rgba(44, 49, 58, 1) 74%, rgba(44, 49, 58, 1) 100%);
+            background: -o-radial-gradient(center, ellipse cover, rgba(44, 49, 58, 1) 0%, rgba(44, 49, 58, 1) 74%, rgba(44, 49, 58, 1) 100%);
+            background: -ms-radial-gradient(center, ellipse cover, rgba(44, 49, 58, 1) 0%, rgba(44, 49, 58, 1) 74%, rgba(44, 49, 58, 1) 100%);
+            background: radial-gradient(ellipse at center, rgba(44, 49, 58, 1) 0%, rgba(44, 49, 58, 1) 74%, rgba(44, 49, 58, 1) 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#d1d1d1', GradientType=1);
+        }
+        /* demo section */
+        
+        .sidebar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            height: auto;
+            width: 300px;
+            background-color: rgb(40, 44, 52);
+            padding: 30px;
+            color: #888;
+            box-shadow: 0px 2px 8px -2px rgba(0, 0, 0, 0.4);
+            overflow: auto;
+        }
+        
+        b {
+            color: aliceblue;
+            font-size: 1.4em;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 1.1em;
+            font-weight: normal;
+        }
+        
+        h2 {
+            margin: 0;
+            font-size: 1.3em;
+            font-weight: normal;
+        }
+        
+        h3 {
+            margin: 0;
+            font-size: 0.8em;
+            font-weight: normal;
+        }
+        
+        a {
+            color: #4996c7;
+            display: inline-block;
+            text-decoration: none;
+            -webkit-transition: color 0.16s ease-out;
+            -o-transition: color 0.16s ease-out;
+            transition: color 0.16s ease-out;
+            cursor: pointer;
+        }
+        
+        a:hover {
+            color: #1d519f;
+        }
+        
+        section {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        hr {
+            border: 1px #eee solid;
+        }
+        
+        table {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px #cfcfcf solid;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            padding: 5px 10px;
+            overflow: hidden;
+        }
+        
+        tr:first-child {
+            width: 60%;
+        }
+        
+        table.noborder,
+        table.noborder th,
+        table.noborder td {
+            border: none;
+        }
+        /*
+        $gunmetal: rgba(40, 44, 52, 1);
+        $gunmetal-2: rgba(44, 49, 58, 1);
+        $black-coral: rgba(92, 99, 113, 1);
+        $cadet-blue-crayola: rgba(171, 178, 192, 1);
+        $french-mauve: rgba(199, 117, 223, 1);
+        $blue-jeans: rgba(93, 174, 242, 1);
+        $tan-crayola: rgba(210, 155, 98, 1);
+        $pistachio: rgba(151, 196, 117, 1);
+        $maximum-blue-green: rgba(81, 182, 195, 1);
+        $candy-pink: rgba(226, 107, 115, 1);
+        */
+        
+        input {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 16px;
+            -webkit-appearance: button;
+            font-size: 0.9em;
+            font-family: monospace;
+            color: aliceblue;
+            max-width: 120px;
+            min-width: 18px;
+            height: 18px;
+            padding: 2px;
+            background: rgba(44, 49, 58, 1);
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0px 1px 5px -3px rgba(0, 0, 0, 0.4);
+            border-radius: 2px;
+            -webkit-transform: translateY(-3px);
+            -ms-transform: translateY(-3px);
+            -o-transform: translateY(-3px);
+            transform: translateY(-3px);
+            overflow: hidden;
+        }
+        
+        button,
+        .input {
+            display: inline-block;
+            vertical-align: middle;
+            color: #777;
+            padding: 10px 20px;
+            border: none;
+            background: #e3e3e3;
+            border-radius: 2px;
+            cursor: pointer;
+            -webkit-transition: color 0.16s ease-out;
+            -o-transition: color 0.16s ease-out;
+            transition: color 0.16s ease-out;
+            font-size: 1em;
+            text-shadow: none;
+            -webkit-transform: translateY(-3px);
+            -ms-transform: translateY(-3px);
+            -o-transform: translateY(-3px);
+            transform: translateY(-3px);
+        }
+        
+        button:hover,
+        .input:hover {
+            background: #d3d3d3;
+        }
+        
+         ::selection {
+            background-color: #1abaec;
+            color: white;
+        }
+        
+         :focus {
+            outline: none;
+        }
+        
+        input[type=radio] {
+            border-radius: 50px;
+        }
+        
+        input[type=radio]:checked {
+            background: rgba(153, 153, 153, 1);
+            background: -moz-radial-gradient(center, ellipse cover, rgba(153, 153, 153, 1) 0%, rgba(153, 153, 153, 1) 40%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 100%);
+            background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(153, 153, 153, 1)), color-stop(40%, rgba(153, 153, 153, 1)), color-stop(46%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+            background: -webkit-radial-gradient(center, ellipse cover, rgba(153, 153, 153, 1) 0%, rgba(153, 153, 153, 1) 40%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 100%);
+            background: -o-radial-gradient(center, ellipse cover, rgba(153, 153, 153, 1) 0%, rgba(153, 153, 153, 1) 40%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 100%);
+            background: -ms-radial-gradient(center, ellipse cover, rgba(153, 153, 153, 1) 0%, rgba(153, 153, 153, 1) 40%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 100%);
+            background: radial-gradient(ellipse at center, rgba(153, 153, 153, 1) 0%, rgba(153, 153, 153, 1) 40%, rgba(255, 255, 255, 1) 46%, rgba(255, 255, 255, 1) 100%);
+            filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#999999', endColorstr='#ffffff', GradientType=1);
+        }
+        
+        input[type=file] {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+        
+        .overlay {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .modal {
+            position: absolute;
+            width: 720px;
+            height: 460px;
+            top: 80px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            background-color: #fff;
+            box-shadow: 0px 1px 8px -2px rgba(0, 0, 0, 0.4);
+            border-radius: 5px;
+        }
+        
+        .content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            box-sizing: border-box;
+            padding: 30px;
+            font-size: 1em;
+        }
+        
+        .content footer {
+            text-align: right;
+            padding: 30px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: auto;
+        }
+        
+        .modalcontent {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .content .left {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            width: 230px;
+        }
+        
+        .content .right {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 300px;
+            padding-left: 30px;
+            padding-bottom: 4px;
+            border-left: 1px #cfcfcf solid;
+        }
+        
+        .input {
+            font-size: 0.9em;
+            padding: 6px 12px;
+            margin-left: 8px;
+        }
+        
+        .modal ul {
+            margin: 0;
+            list-style-type: none;
+        }
+        
+        .modal table {
+            margin: 0;
+        }
+        
+        .incell {
+            position: absolute;
+            right: 0;
+            border-radius: 0;
+            transform: none;
+            top: 0;
+            padding-bottom: 20px;
+        }
+        
+        .parentable {
+            position: relative;
+            height: 182px;
+            overflow: hidden;
+        }
+        
+        .limitable {
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .primary {
+            color: #fff;
+            background: #5ca8d9;
+            margin-right: 10px;
+        }
+        
+        .primary:hover {
+            background: #347eaf;
+        }
+        
+        #textures td {
+            position: relative;
+        }
+        
+        @media screen and (max-width: 1280px),
+        screen and (max-height: 720px) {
+            #wrapper {
+                right: 300px;
+            }
+            .sidebar {
+                font-size: 14px;
+                width: 260px;
+            }
+            input {
+                max-width: 90px;
+            }
+            .modal {
+                top: 40px;
+            }
+        }
+        /* end of demo section */
+    </style>
+
+    <title>JSON model viewer</title>
+
+</head>
+
+<body>
+
+    <!-- JSON model -->
+    <div id="wrapper"></div>
+
+    <!-- GUI -->
+    <div class="sidebar">
+        <b>JSON 3D Model Viewer</b>
+        <h3>by Rabbitminers</h3>
+        <br/>
+        <h3>a tool to help show and design better models in your mods and resource packs</h3>
+        <!-- TODO: Make the damn repository -->
+        <section>
+            <p><b>Base Grid Platform</b></p>
+
+            <p>
+                Display grid <label for="showgrid"><input type="radio" checked id="showgrid" name="grid" value="true" onchange="this.value == 'true' ? viewer.showGrid() : viewer.hideGrid()"> Yes</label><label for="hidegrid"><input type="radio" id="hidegrid" name="grid" value="false" onchange="this.value == 'true' ? viewer.showGrid() : viewer.hideGrid()"> No</label>
+            </p>
+
+            <p>
+                <label for="gridcolor">Grid color #<input type="text" id="gridcolor" value="afafaf" onchange="if (this.value.match(/^[a-f0-9]{6}$/)) viewer.setGridColor(eval('0x' + this.value))"></label>
+            </p>
+
+            <p><b>Camera</b></p>
+            <p>
+                <label for="camera-target">Target <input type="text" id="camera-target" onchange="setCameraTarget(this.value)"></label>
+            </p>
+
+            <p>
+                <label for="camera-pos">Position <input type="text" id="camera-pos" onchange="setCameraPosition(this.value)"></label>
+            </p>
+
+            <ul>
+                <li>
+                    <p>
+                        <label for="camera-pos">X <input type="text" id="camera-pos-x"></label>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <label for="camera-pos">Y <input type="text" id="camera-pos-y"></label>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <label for="camera-pos">Z <input type="text" id="camera-pos-z"></label>
+                    </p>
+                </li>
+            </ul>
+
+            <p><b>Reset</b></p>
+            <ul>
+                <li>
+                    <p>
+                        <a onclick="viewer.reset()">Reset camera position</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a onclick="viewer.lookAt('demo')">Focus on model</a>
+                    </p>
+                </li>
+            </ul>
+            <!--
+            <p><b>Model</b></p>
+            <ul>
+                <li>
+                    <p>
+                        <label for="displayOption">Display <input type="text" id="displayOption" value="block" onchange="if (['thirdperson_righthand', 'thirdperson_lefthand', 'firstperson_righthand', 'firstperson_lefthand', 'gui', 'head', 'ground', 'fixed', 'block', 'thirdperson', 'firstperson'].indexOf(this.value) >= 0) model.applyDisplay(this.value)"></label>
+                    </p>
+                </li>
+                
+                <li>
+                    <p>
+                        TODO: REIMPLEMENT THIS
+                        <a onclick="openModal()">Load model</a>
+                    </p>
+                </li>
+            </ul>
+            -->
+        </section>
+
+        <p><b>Links</b></p>
+        <ul>
+            <li>
+                <p>
+                    <a href="https://github.com/Rabbitminers">GitHub</a>
+                </p>
+            </li>
+            <li>
+                <p>
+                    <a href="https://github.com/Rabbitminers">Repository</a>
+                </p>
+            </li>
+            <li>
+                <p>
+                    <a href="https://www.curseforge.com/members/rabbitminers/projects">Curseforge</a>
+                </p>
+            </li>
+            <li>
+                <p>
+                    <a href="https://www.reddit.com/user/Rabbitminers">Reddit</a>
+                </p>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="overlay" onclick="this.setAttribute('style', 'display: none;')" style="display: none;">
+        <div id="modal" class="modal">
+            <div class="content">
+
+                <header>
+                    <h2 id="modaltitle">Load model</h2>
+                </header>
+
+                <div class="modalcontent">
+
+                    <div class="left">
+                        <b>Model</b>
+                        <ul>
+                            <li>
+                                <p>
+                                    Json <label for="loadmodel" class="input">Choose file...</label><input type="file" accept=".json" id="loadmodel" onchange="loadjson(this.files[0])">
+                                </p>
+                            </li>
+                            <li>
+                                <table>
+                                    <tbody id="models">
+
+                                    </tbody>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="right">
+                        <b>Textures</b>
+                        <ul>
+                            <li>
+                                <p>
+                                    Add texture <label for="loadtexture" class="input">Choose file...</label><input type="file" accept=".png" id="loadtexture" onchange="loadtexture(this.files)" multiple>
+                                </p>
+                            </li>
+                            <li>
+                                <div class="parentable">
+                                    <div class="limitable">
+                                        <table>
+                                            <tbody id="textures">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+
+                <footer>
+                    <button type="button" class="primary" onclick="loadthing()">Load</button>
+                    <button type="button" onclick="document.querySelector('.overlay').setAttribute('style', 'display: none;')">Close</button>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+    <!-- end of demo gui -->
+
+    <!-- demo js -->
+    <script type="text/javascript">
+        document.getElementById('modal').addEventListener('click', function(e) {
+            e.stopPropagation()
+        })
+        var modelLoader = {
+            modelName: '',
+            json: '',
+            textures: []
+        }
+
+        function loadjson(file) {
+            var reader = new FileReader()
+            reader.onload = function(e) {
+                modelLoader.modelName = file.name
+                modelLoader.json = e.target.result
+                document.getElementById('models').innerHTML = '<tr><td>' + file.name + '</td></tr>'
+            }
+            reader.readAsText(file)
+            document.getElementById('loadmodel').value = ''
+        }
+
+        function loadtexture(files) {
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                (function(file) {
+                    var reader = new FileReader()
+                    reader.onload = function(e) {
+                        modelLoader.textures.push({
+                            name: file.name.split('.png')[0],
+                            texture: e.target.result
+                        })
+                        document.getElementById('textures').innerHTML += '<tr><td>' + file.name + '<label for="loadmcmeta' + modelLoader.textures.length + '" class="input incell">mcmeta</label><input type="file" accept=".mcmeta" id="loadmcmeta' + modelLoader.textures.length + '" onchange="loadmcmeta(this.files[0], ' + (modelLoader.textures.length - 1) + ')"></td></tr>'
+                    }
+                    reader.readAsDataURL(file)
+                })(file)
+            }
+            document.getElementById('loadtexture').value = ''
+        }
+
+        function loadmcmeta(file, index) {
+            var reader = new FileReader()
+            reader.onload = function(e) {
+                modelLoader.textures[index].mcmeta = e.target.result
+            }
+            reader.readAsText(file)
+            document.getElementById('loadmcmeta' + (index + 1)).value = ''
+        }
+
+        function openModal() {
+            modelLoader = {
+                modelName: '',
+                json: '',
+                textures: []
+            }
+            document.getElementById('models').innerHTML = ''
+            document.getElementById('textures').innerHTML = ''
+            document.getElementById('loadmodel').value = ''
+            document.getElementById('loadtexture').value = ''
+            document.getElementById('modaltitle').innerHTML = 'Load model'
+            document.querySelector('.overlay').setAttribute('style', 'display: block;')
+        }
+
+        function loadthing() {
+            try {
+                var newmodel = new JsonModel('demo', modelLoader.json, modelLoader.textures)
+                try {
+                    viewer.remove('demo')
+                } catch (e) {
+                    console.log(e.message)
+                }
+                model = newmodel
+                viewer.load(model)
+                document.getElementById('displayOption').value = 'block'
+                document.querySelector('.overlay').setAttribute('style', 'display: none;')
+            } catch (e) {
+                window.alert('Error: ' + e.message)
+                console.log(e.message)
+            }
+        }
+
+        function setCameraPosition(input) {
+            viewer.camera.position.set.apply(
+                viewer.camera.position,
+                input.trim().split(' ').map(parseFloat)
+            )
+        }
+
+        function setCameraTarget(input) {
+            var pos = input.trim().split(' ').map(parseFloat)
+            viewer.controls.target = new THREE.Vector3(pos[0], pos[1], pos[2])
+        }
+    </script>
+    <!-- end of demo js -->
+
+
+    <!-- actual usage of the api -->
+
+    <!-- Requires three.js and OrbitControls.js -->
+    <script src="libs/three.min.js"></script>
+    <script src="libs/OrbitControls.js"></script>
+
+    <!-- Import ModelViewer.js -->
+    <script src="src/ModelViewer.js"></script>
+
+    <!-- Using the model viewer -->
+    <script src="demo/model.js"></script>
+    <script src="demo/textures.js"></script>
+
+    <script type="text/javascript">
+        var container = document.getElementById('wrapper')
+        var viewer = new ModelViewer(container)
+
+        window.addEventListener('resize', viewer.resize)
+
+        var model = new JsonModel('demo', json, textures)
+
+        viewer.load(model)
+    </script>
+
+    <!-- hack just for the demo -->
+    <script type="text/javascript">
+        var camPosInput = document.getElementById('camera-pos')
+        var camPosInputX = document.getElementById('camera-pos-x')
+        var camPosInputY = document.getElementById('camera-pos-y')
+        var camPosInputZ = document.getElementById('camera-pos-z')
+
+        var camTargetInput = document.getElementById('camera-target')
+
+        var prevCamPos = new THREE.Vector3()
+        var prevCamTarget = new THREE.Vector3()
+
+        var originalDrawMethod = viewer.draw.bind(viewer)
+
+        viewer.draw = function() {
+            originalDrawMethod()
+
+            var camPos = viewer.camera.position.clone()
+            camPos.x = Math.round(camPos.x * 1000) / 1000
+            camPos.y = Math.round(camPos.y * 1000) / 1000
+            camPos.z = Math.round(camPos.z * 1000) / 1000
+
+            var camTarget = viewer.controls.target.clone()
+            camTarget.x = Math.round(camTarget.x * 1000) / 1000
+            camTarget.y = Math.round(camTarget.y * 1000) / 1000
+            camTarget.y = Math.round(camTarget.y * 1000) / 1000
+
+            if (camPos.equals(prevCamPos) && camTarget.equals(prevCamTarget)) return
+
+            camPosInput.value = prevCamPos.x + ' ' + prevCamPos.y + ' ' + prevCamPos.z;
+            camPosInputX.value = prevCamPos.x;
+            camPosInputY.value = prevCamPos.y;
+            camPosInputZ.value = prevCamPos.z;
+            camTargetInput.value = prevCamTarget.x + ' ' + prevCamTarget.y + ' ' + prevCamTarget.z
+
+            prevCamPos = camPos
+            prevCamTarget = camTarget
+        }
+    </script>
+
+</body>
+
+</html>
